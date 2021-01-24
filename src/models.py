@@ -18,7 +18,7 @@ class User(Base):
     first_name= Column(String, nullable=False)
     last_name= Column(String, nullable=False)
     password= Column(String(15), nullable=False)
-    #relación que permite al objeto hijo referirse al objeto padre directamente,usa el ForeingKey preestablecida
+    #relación que permite al objeto hijo referirse al objeto padre directamente,usa la ForeingKey preestablecida
     posts= relationship("Post",backref="author")
     comments = relationship("Comment",backref="author_comment")
     posts_likes =relationship("PostLike",backref="author_post_like")
@@ -51,7 +51,7 @@ class Comment(Base):
     comment_likes = relationship("CommentLike", backref="comment")
 
 class CommentLike(Base):
-    __tablename__ = 'commentlike'
+    __tablename__ = 'comment_like'
     # Here we define columns for the table address.
     # Notice that each column is also a normal Python instance attribute.
     id = Column(Integer, primary_key=True)
@@ -59,7 +59,7 @@ class CommentLike(Base):
     user_id = Column(Integer, ForeignKey('user.id'))
 
 class PostLike(Base):
-    __tablename__ = 'postlike'
+    __tablename__ = 'post_like'
     # Here we define columns for the table address.
     # Notice that each column is also a normal Python instance attribute.
     id = Column(Integer, primary_key=True)
